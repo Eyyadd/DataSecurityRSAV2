@@ -1,0 +1,331 @@
+﻿@{
+    ViewData["Title"] = "Home";
+
+
+}
+
+<div class="home-container">
+
+        <!-- Dashboard for authenticated users -->
+        <div class="dashboard container py-5">
+            <div class="dashboard-header d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                <div class="welcome-message">
+                    <h1 class="fw-bold display-5 text-primary mb-2">Welcome back</h1>
+                    <p class="text-muted fs-5">Your personal data security dashboard</p>
+                </div>
+                <div class="quick-actions d-flex gap-3">
+                    <a asp-controller="EncryptionRSA" asp-action="Encrypt" class="btn btn-primary shadow-sm px-4 py-2 rounded-pill">
+                        <i class="bi bi-shield-lock-fill"></i> RSA Encrypt
+                    </a>
+                    <a asp-controller="EncryptionRSA" asp-action="Decrypt" class="btn btn-outline-primary shadow-sm px-4 py-2 rounded-pill">
+                        <i class="bi bi-shield-slash"></i> RSA Decrypt
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Dashboard Widgets -->
+            <div class="dashboard-widgets row g-4 mb-5">
+                <!-- Security Status -->
+                <div class="col-md-4">
+                    <div class="widget p-4 rounded-3 bg-white shadow-sm text-center">
+                        <div class="widget-icon mb-3">
+                            <i class="bi bi-shield-check display-6"></i>
+                        </div>
+                        <h5 class="mb-2">Security Status</h5>
+                        <span class="status-badge secure">@ViewBag.SecurityStatus</span>
+                        <p class="text-muted mt-2">Your account and data are protected</p>
+                    </div>
+                </div>
+
+                <!-- Activity Summary -->
+                <div class="col-md-4">
+                    <div class="widget p-4 rounded-3 bg-white shadow-sm text-center">
+                        <div class="widget-icon mb-3">
+                            <i class="bi bi-bar-chart display-6"></i>
+                        </div>
+                        <h5 class="mb-3">Activity Summary</h5>
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <h6 class="mb-0">@ViewBag.EncryptionCount</h6>
+                                <small>Encryptions</small>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">@ViewBag.DecryptionCount</h6>
+                                <small>Decryptions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Last Login -->
+                <div class="col-md-4">
+                    <div class="widget p-4 rounded-3 bg-white shadow-sm text-center">
+                        <div class="widget-icon mb-3">
+                            <i class="bi bi-calendar-check display-6"></i>
+                        </div>
+                        <h5 class="mb-2">Last Login</h5>
+                        <p class="mb-1">@ViewBag.LastLogin</p>
+                        <small class="text-muted">Successful login from your usual device</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <div class="feature-section">
+                <h2 class="mb-4 text-center">Available Features</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="feature-card h-100 text-center">
+                            <div class="feature-icon">
+                                <i class="bi bi-lock"></i>
+                            </div>
+                            <h4>Text Encryption</h4>
+                            <p>Secure your sensitive information with strong encryption technology.</p>
+                            <a asp-controller="Encryption" asp-action="Encrypt" class="feature-link">Encrypt Text <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card h-100 text-center">
+                            <div class="feature-icon">
+                                <i class="bi bi-unlock"></i>
+                            </div>
+                            <h4>Secure Decryption</h4>
+                            <p>Access your encrypted information when you need it.</p>
+                            <a asp-controller="Encryption" asp-action="Decrypt" class="feature-link">Decrypt Text <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card h-100 text-center">
+                            <div class="feature-icon">
+                                <i class="bi bi-shield"></i>
+                            </div>
+                            <h4>Security Tips</h4>
+                            <p>Learn best practices to keep your data safe online.</p>
+                            <a asp-controller="Home" asp-action="SecurityTips" class="feature-link">View Tips <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Landing page for guests -->
+        <div class="hero-section">
+            <div class="hero-content container text-center">
+                <h1>Secure Your Sensitive Information</h1>
+                <p class="hero-subtitle">Advanced encryption for your personal and business data</p>
+               
+            </div>
+        </div>
+
+        <!-- Features Overview -->
+        <div class="features-overview container py-5">
+            <div class="section-header text-center mb-5">
+                <h2>Why Choose Our Service</h2>
+                <p>Powerful tools to protect your information</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 text-center">
+                    <div class="feature-item p-3 bg-light rounded">
+                        <div class="feature-icon mb-2">
+                            <i class="bi bi-lock-fill"></i>
+                        </div>
+                        <h5>Strong Encryption</h5>
+                        <p>Industry-standard encryption algorithms keep your data secure.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="feature-item p-3 bg-light rounded">
+                        <div class="feature-icon mb-2">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <h5>Secure Access</h5>
+                        <p>Multi-factor authentication and secure login protocols.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="feature-item p-3 bg-light rounded">
+                        <div class="feature-icon mb-2">
+                            <i class="bi bi-person-lock"></i>
+                        </div>
+                        <h5>Privacy First</h5>
+                        <p>Your data remains private and only accessible by you.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="feature-item p-3 bg-light rounded">
+                        <div class="feature-icon mb-2">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h5>Fast Processing</h5>
+                        <p>Quick encryption and decryption of your sensitive data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-it-works bg-light py-5">
+            <div class="container">
+                <div class="section-header text-center mb-5">
+                    <h2>How It Works</h2>
+                    <p>Simple steps to secure your information</p>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
+                    <div class="step text-center">
+                        <div class="step-number">1</div>
+                        <h5>Sign Up</h5>
+                        <p>Create your secure account with strong password protection.</p>
+                    </div>
+                    <i class="bi bi-arrow-right fs-2"></i>
+                    <div class="step text-center">
+                        <div class="step-number">2</div>
+                        <h5>Enter Your Text</h5>
+                        <p>Input the sensitive information you want to protect.</p>
+                    </div>
+                    <i class="bi bi-arrow-right fs-2"></i>
+                    <div class="step text-center">
+                        <div class="step-number">3</div>
+                        <h5>Encrypt Securely</h5>
+                        <p>Your data is encrypted using advanced algorithms.</p>
+                    </div>
+                    <i class="bi bi-arrow-right fs-2"></i>
+                    <div class="step text-center">
+                        <div class="step-number">4</div>
+                        <h5>Access Anytime</h5>
+                        <p>Decrypt your information whenever you need it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Our Services -->
+        <div class="our-services container py-5">
+            <h2 class="text-center mb-5">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-box p-4 bg-white rounded-3 shadow-sm h-100 text-center">
+                        <i class="bi bi-file-earmark-lock text-primary display-6 mb-3"></i>
+                        <h5>File Encryption</h5>
+                        <p>Upload and securely encrypt sensitive files directly in your browser.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box p-4 bg-white rounded-3 shadow-sm h-100 text-center">
+                        <i class="bi bi-envelope-lock text-primary display-6 mb-3"></i>
+                        <h5>Secure Messaging</h5>
+                        <p>Send confidential messages with end-to-end encryption and expiration.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box p-4 bg-white rounded-3 shadow-sm h-100 text-center">
+                        <i class="bi bi-database-lock text-primary display-6 mb-3"></i>
+                        <h5>Encrypted Storage</h5>
+                        <p>Store encrypted data with zero-knowledge architecture for maximum privacy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       
+    
+</div>
+
+<!-- Styles -->
+<style>
+    .widget {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+        }
+
+    .widget-icon {
+        font-size: 2.5rem;
+        color: #0d6efd;
+    }
+
+    .status-badge.secure {
+        background-color: #198754;
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        color: white;
+        font-weight: 500;
+    }
+
+    .feature-card {
+        border: 1px solid #dee2e6;
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        background-color: #fff;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.03);
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
+        }
+
+    .feature-icon {
+        font-size: 2rem;
+        color: #0d6efd;
+        margin-bottom: 1rem;
+    }
+
+    .feature-link {
+        color: #0d6efd;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+        .feature-link:hover {
+            text-decoration: underline;
+        }
+
+    .hero-section {
+        background: linear-gradient(to right, #0d6efd, #6610f2);
+        color: white;
+        padding: 5rem 2rem;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .hero-actions .btn {
+        margin: 0.5rem;
+    }
+
+    .step-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #0d6efd;
+        margin-bottom: 0.5rem;
+    }
+
+    .cta-section {
+        background-color: #0d6efd;
+        padding: 3rem 1rem;
+    }
+
+    .dashboard h2 {
+        font-weight: 600;
+    }
+
+    .our-services .service-box {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .our-services .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0,0,0,0.08);
+        }
+
+</style>

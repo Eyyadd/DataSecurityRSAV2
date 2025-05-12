@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Security Tips";
+}
+<div class="security-tips-container">
+    <div class="tips-header">
+        <div class="tips-icon">
+            <i class="bi bi-shield-lock"></i>
+        </div>
+        <h1>Security Tips</h1>
+        <p>Best practices to help you stay safe online</p>
+    </div>
+    <div class="tips-content">
+        <div class="tip-category">
+            <h2><i class="bi bi-key"></i> Password Security</h2>
+
+            <div class="tip-cards">
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">01</span>
+                        <h3>Create Strong Passwords</h3>
+                    </div>
+                    <p>Use a combination of uppercase and lowercase letters, numbers, and special characters. Aim for at least 12 characters in length.</p>
+                    <div class="tip-example">
+                        <div class="bad-example">
+                            <span class="example-label">Weak</span>
+                            <span class="example-content">password123</span>
+                        </div>
+                        <div class="good-example">
+                            <span class="example-label">Strong</span>
+                            <span class="example-content">Pa$sw0rd!2#Kl</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">02</span>
+                        <h3>Use Different Passwords</h3>
+                    </div>
+                    <p>Never reuse passwords across different websites or services. If one account is compromised, others remain secure.</p>
+                    <div class="tip-info">
+                        <i class="bi bi-info-circle"></i> Consider using a password manager to generate and store unique passwords securely.
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">03</span>
+                        <h3>Enable Two-Factor Authentication</h3>
+                    </div>
+                    <p>Add an extra layer of security by requiring a second form of verification beyond just your password.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Protection -->
+        <div class="tip-category">
+            <h2><i class="bi bi-file-earmark-lock"></i> Data Protection</h2>
+
+            <div class="tip-cards">
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">04</span>
+                        <h3>Encrypt Sensitive Information</h3>
+                    </div>
+                    <p>Use encryption tools (like our service) for any sensitive information, especially when storing or transmitting data.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">05</span>
+                        <h3>Regular Backups</h3>
+                    </div>
+                    <p>Keep backups of important data in secure, encrypted storage separate from your primary devices.</p>
+                    <div class="tip-info">
+                        <i class="bi bi-info-circle"></i> Follow the 3-2-1 backup rule: 3 copies, 2 different media types, 1 off-site copy.
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">06</span>
+                        <h3>Secure File Deletion</h3>
+                    </div>
+                    <p>Use secure deletion tools when disposing of sensitive files. Standard deletion doesn't completely remove data from storage media.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Online Safety -->
+        <div class="tip-category">
+            <h2><i class="bi bi-globe"></i> Online Safety</h2>
+
+            <div class="tip-cards">
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">07</span>
+                        <h3>Beware of Phishing</h3>
+                    </div>
+                    <p>Be skeptical of unexpected emails, messages, or calls asking for personal information or urgent action.</p>
+                    <div class="tip-info">
+                        <i class="bi bi-exclamation-triangle"></i> Legitimate organizations won't ask for passwords or sensitive information via email.
+                    </div>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">08</span>
+                        <h3>Keep Software Updated</h3>
+                    </div>
+                    <p>Regularly update your operating system, browsers, and apps to protect against security vulnerabilities.</p>
+                </div>
+
+                <div class="tip-card">
+                    <div class="tip-card-header">
+                        <span class="tip-number">09</span>
+                        <h3>Use Secure Networks</h3>
+                    </div>
+                    <p>Avoid using public Wi-Fi for sensitive activities like banking or accessing personal accounts without a VPN.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tips-footer">
+        <div class="security-resources">
+            <h3>Additional Resources</h3>
+            <ul class="resources-list">
+                <li><a href="#" class="resource-link"><i class="bi bi-link-45deg"></i> NIST Cybersecurity Framework</a></li>
+                <li><a href="#" class="resource-link"><i class="bi bi-link-45deg"></i> FTC Consumer Information on Security</a></li>
+                <li><a href="#" class="resource-link"><i class="bi bi-link-45deg"></i> CISA Security Tips</a></li>
+            </ul>
+        </div>
+
+        <div class="tips-actions">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">
+                <i class="bi bi-house"></i> Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>

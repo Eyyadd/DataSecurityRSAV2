@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DataSecurityProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DataSecurityProject.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+    <style>
+        /* Custom Navbar Styling */
+        .custom-navbar {
+        background: linear-gradient(135deg, #4286f4, #373B44);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 12px 0;
+        }
+
+        .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: white !important;
+        padding-left: 10px;
+        }
+
+        .nav-link {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-weight: 500;
+        margin: 0 8px;
+        transition: all 0.3s ease;
+        position: relative;
+        }
+
+        .nav-link:hover {
+        color: #ffffff !important;
+        }
+
+        .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+        width: 100%;
+        }
+
+        .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .btn-login, .btn-register {
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        }
+
+        .btn-login {
+        background-color: transparent;
+        border: 1px solid white;
+        color: white !important;
+        }
+
+        .btn-login:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-register {
+        background-color: white;
+        color: #4286f4 !important;
+        border: 1px solid white;
+        margin-left: 8px;
+        }
+
+        .btn-register:hover {
+        background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-logout {
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        color: white !important;
+        padding: 6px 16px;
+        transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .user-greeting {
+        color: white !important;
+        font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-navbar">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Data Security Platform</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <!-- Left-aligned content (if any) can go here -->
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                      
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-login" asp-action="Encrypt" asp-controller="EncryptionRSA">Encrypt</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-login" asp-action="Decrypt" asp-controller="EncryptionRSA">Decrypt</a>
+                            </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="footer bg-light border-top py-4 mt-5">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
+            <div class="mb-2 mb-md-0 text-muted">
+                &copy; 2025 <strong class="text-primary">Data Security</strong> by <span class="fw-semibold">Fatma</span>
+            </div>
+            <div>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-muted">
+                    Privacy Policy
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

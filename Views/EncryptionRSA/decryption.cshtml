@@ -1,0 +1,39 @@
+﻿@model EncrytpionRSA
+@{
+    ViewData["Title"] = "Decrypt Text";
+    var isDecryptionView = true; // Set to false if this is the encryption view
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-primary text-white rounded-top-4 d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">
+                <i class="bi bi-shield-lock-fill me-2"></i>@(isDecryptionView ? "Decrypt Text" : "Encrypt Text")
+            </h2>
+            <a asp-action="@(isDecryptionView ? "Encrypt" : "Decrypt")" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-left-circle me-1"></i>
+                @(isDecryptionView ? "Go to Encryption" : "Go to Decryption")
+            </a>
+        </div>
+        <div class="card-body p-4">
+
+            @if (Model?.DecryptedText != null)
+            {
+                <div class="mb-4">
+                    <h5 class="text-success">
+                        <i class="bi bi-unlock me-2"></i>Decrypted Text
+                    </h5>
+                    <pre class="bg-light p-3 rounded border">@Model.DecryptedText</pre>
+                </div>
+            }
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-info mt-3" role="alert">
+                    <i class="bi bi-info-circle-fill me-2"></i>@ViewBag.Message
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

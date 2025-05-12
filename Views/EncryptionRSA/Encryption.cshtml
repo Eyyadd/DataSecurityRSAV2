@@ -1,0 +1,45 @@
+﻿@model EncrytpionRSA
+@{
+    ViewData["Title"] = "Encrypt Text";
+    var isDecryptionView = false;
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-primary text-white rounded-top-4 d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">
+                <i class="bi bi-lock-fill me-2"></i>Encrypt Text
+            </h2>
+            <a asp-action="@(isDecryptionView ? "Encrypt" : "Decrypt")" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-left-circle me-1"></i>
+                @(isDecryptionView ? "Go to Encryption" : "Go to Decryption")
+            </a>
+        </div>
+        <div class="card-body p-4">
+            <form asp-action="Encrypt" method="post">
+                <div class="mb-3">
+                    <label asp-for="PlainText" class="form-label">Text to Encrypt</label>
+                    <textarea class="form-control" asp-for="PlainText" rows="4" placeholder="Enter your text here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-shield-lock me-1"></i>Encrypt
+                </button>
+            </form>
+
+            @if (Model?.EncryptedText != null)
+            {
+                <div class="mt-4">
+                    <h5 class="text-success"><i class="bi bi-lock me-2"></i>Encrypted Text</h5>
+                    <pre class="bg-light p-3 rounded border">@Model.EncryptedText</pre>
+                </div>
+            }
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success mt-3" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>@ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>

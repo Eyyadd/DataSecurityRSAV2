@@ -1,16 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home";
+    var loggedInUser = Context.Session.GetString("user");
 
 
 }
 
 <div class="home-container">
-
+    @if (!string.IsNullOrEmpty(loggedInUser))
+    {
+        var name = loggedInUser.Substring(0, loggedInUser.IndexOf("@"));
         <!-- Dashboard for authenticated users -->
         <div class="dashboard container py-5">
             <div class="dashboard-header d-flex justify-content-between align-items-center mb-4 flex-wrap">
                 <div class="welcome-message">
-                    <h1 class="fw-bold display-5 text-primary mb-2">Welcome back</h1>
+                    <h1 class="fw-bold display-5 text-primary mb-2">Welcome back, <span class="user-name">@name</span></h1>
                     <p class="text-muted fs-5">Your personal data security dashboard</p>
                 </div>
                 <div class="quick-actions d-flex gap-3">
@@ -82,7 +85,7 @@
                             </div>
                             <h4>Text Encryption</h4>
                             <p>Secure your sensitive information with strong encryption technology.</p>
-                            <a asp-controller="Encryption" asp-action="Encrypt" class="feature-link">Encrypt Text <i class="bi bi-arrow-right"></i></a>
+                            <a asp-controller="EncryptionRSA" asp-action="Encrypt" class="feature-link">Encrypt Text <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -92,7 +95,7 @@
                             </div>
                             <h4>Secure Decryption</h4>
                             <p>Access your encrypted information when you need it.</p>
-                            <a asp-controller="Encryption" asp-action="Decrypt" class="feature-link">Decrypt Text <i class="bi bi-arrow-right"></i></a>
+                            <a asp-controller="EncryptionRSA" asp-action="Decrypt" class="feature-link">Decrypt Text <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -108,13 +111,18 @@
                 </div>
             </div>
         </div>
-
+    }
+    else
+    {
         <!-- Landing page for guests -->
         <div class="hero-section">
             <div class="hero-content container text-center">
                 <h1>Secure Your Sensitive Information</h1>
                 <p class="hero-subtitle">Advanced encryption for your personal and business data</p>
-               
+                <div class="hero-actions mt-4">
+                    <a asp-controller="Authentication" asp-action="Register" class="btn btn-primary btn-lg hero-btn">Get Started</a>
+                    <a asp-controller="Authentication" asp-action="Login" class="btn btn-outline-light btn-lg hero-btn">Sign In</a>
+                </div>
             </div>
         </div>
 
@@ -228,8 +236,13 @@
         </div>
 
 
-       
-    
+        <!-- CTA Section -->
+        <div class="cta-section py-5 text-center bg-primary text-white">
+            <h2>Ready to Secure Your Data?</h2>
+            <p>Join thousands of users who trust our platform for their security needs</p>
+            <a asp-controller="Authentication" asp-action="Register" class="btn btn-light btn-lg mt-3">Create Free Account</a>
+        </div>
+    }
 </div>
 
 <!-- Styles -->

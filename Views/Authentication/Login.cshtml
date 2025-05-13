@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-container">
+    <div class="auth-box">
+        <div class="auth-header">
+            <h2><i class="bi bi-shield-lock"></i> Welcome Back</h2>
+            <p class="text-muted">Sign in to your account</p>
+        </div>
+
+        <form method="post" class="auth-form">
+            <div class="mb-4 input-group-custom">
+                <span class="input-icon"><i class="bi bi-envelope"></i></span>
+                <input name="email" type="email" class="form-control custom-input" placeholder="Email Address" required />
+            </div>
+
+            <div class="mb-4 input-group-custom">
+                <span class="input-icon"><i class="bi bi-lock"></i></span>
+                <input name="password" type="password" class="form-control custom-input" placeholder="Password" required />
+                <span class="password-toggle" onclick="togglePassword(this)">
+                    <i class="bi bi-eye"></i>
+                </span>
+            </div>
+
+            <div class="remember-me mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+                <a asp-action="ResetRequest" asp-controller="Authentication" class="auth-link">Forgot password?</a>
+            </div>
+
+            <button class="btn btn-primary btn-lg w-100 custom-btn">Sign In</button>
+
+            <div class="mt-4 text-center">
+                Don't have an account? <a asp-controller="Authentication" asp-action="Register" class="auth-link">Create Account</a>
+            </div>
+        </form>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert custom-alert-danger mt-4">
+                <i class="bi bi-exclamation-triangle"></i> @ViewBag.Message
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePassword(element) {
+            const passwordInput = element.parentElement.querySelector('input');
+            const icon = element.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        }
+    </script>
+}

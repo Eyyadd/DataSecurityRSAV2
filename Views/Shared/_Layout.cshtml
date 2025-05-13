@@ -12,97 +12,97 @@
     <style>
         /* Custom Navbar Styling */
         .custom-navbar {
-        background: linear-gradient(135deg, #4286f4, #373B44);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 12px 0;
+            background: linear-gradient(135deg, #4286f4, #373B44);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 12px 0;
         }
 
         .navbar-brand {
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: white !important;
-        padding-left: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+            padding-left: 10px;
         }
 
         .nav-link {
-        color: rgba(255, 255, 255, 0.85) !important;
-        font-weight: 500;
-        margin: 0 8px;
-        transition: all 0.3s ease;
-        position: relative;
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-link:hover {
-        color: #ffffff !important;
-        }
+            .nav-link:hover {
+                color: #ffffff !important;
+            }
 
-        .nav-link::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: white;
-        transition: width 0.3s ease;
-        }
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: white;
+                transition: width 0.3s ease;
+            }
 
-        .nav-link:hover::after {
-        width: 100%;
-        }
+            .nav-link:hover::after {
+                width: 100%;
+            }
 
         .navbar-toggler {
-        border-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
 
         .btn-login, .btn-register {
-        border-radius: 20px;
-        padding: 6px 16px;
-        font-weight: 500;
-        transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .btn-login {
-        background-color: transparent;
-        border: 1px solid white;
-        color: white !important;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white !important;
         }
 
-        .btn-login:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-        }
+            .btn-login:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+            }
 
         .btn-register {
-        background-color: white;
-        color: #4286f4 !important;
-        border: 1px solid white;
-        margin-left: 8px;
+            background-color: white;
+            color: #4286f4 !important;
+            border: 1px solid white;
+            margin-left: 8px;
         }
 
-        .btn-register:hover {
-        background-color: rgba(255, 255, 255, 0.85);
-        }
+            .btn-register:hover {
+                background-color: rgba(255, 255, 255, 0.85);
+            }
 
         .btn-logout {
-        background-color: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 20px;
-        color: white !important;
-        padding: 6px 16px;
-        transition: all 0.3s ease;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            color: white !important;
+            padding: 6px 16px;
+            transition: all 0.3s ease;
         }
 
-        .btn-logout:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-        }
+            .btn-logout:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+            }
 
         .user-greeting {
-        color: white !important;
-        font-weight: 500;
+            color: white !important;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -120,7 +120,29 @@
                         <!-- Left-aligned content (if any) can go here -->
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                      
+                        @{
+                            var loggedInUser = Context.Session.GetString("user");
+
+                        }
+                        @if (!string.IsNullOrEmpty(loggedInUser))
+                        {
+                            var name = loggedInUser.Substring(0, loggedInUser.IndexOf("@"));
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle user-greeting" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hello, @name!
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Authentication" asp-action="ChangePassword">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <form asp-controller="Authentication" asp-action="Logout" method="post" class="dropdown-item m-0 p-0">
+                                            <button type="submit" class="btn w-100 text-start">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link btn btn-login" asp-action="Encrypt" asp-controller="EncryptionRSA">Encrypt</a>
                             </li>
@@ -128,6 +150,16 @@
                                 <a class="nav-link btn btn-login" asp-action="Decrypt" asp-controller="EncryptionRSA">Decrypt</a>
                             </li>
 
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-login" asp-action="Login" asp-controller="Authentication">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-register" asp-action="Register" asp-controller="Authentication">Register</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

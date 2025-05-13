@@ -25,23 +25,32 @@ namespace DataSecurityRSAV2.Controllers
             var encryptedBytes = rsa.Encrypt(Encoding.UTF8.GetBytes(model.PlainText), RSAEncryptionPadding.OaepSHA256);
             model.EncryptedText = Convert.ToBase64String(encryptedBytes);
 
-            // Save encrypted data and private key to file
-            if (!Directory.Exists(storagePath))
-                Directory.CreateDirectory(storagePath);
+            // Get user from session
+            var username = HttpContext.Session.GetString("user") ?? "anonymous";
 
-            System.IO.File.WriteAllText(Path.Combine(storagePath, "encrypted.txt"), model.EncryptedText);
-            System.IO.File.WriteAllText(Path.Combine(storagePath, "private.key"), Convert.ToBase64String(privateKey));
+            // Create user-specific folder
+            var userFolder = Path.Combine(storagePath, username);
+            if (!Directory.Exists(userFolder))
+                Directory.CreateDirectory(userFolder);
+
+            // Save encrypted data and private key
+            System.IO.File.WriteAllText(Path.Combine(userFolder, "encrypted.txt"), model.EncryptedText);
+            System.IO.File.WriteAllText(Path.Combine(userFolder, "private.key"), Convert.ToBase64String(privateKey));
 
             ViewBag.Message = "Encryption successful. Encrypted data saved.";
-            return View("Encryption",model);
+            return View("Encryption", model);
         }
+
 
         public IActionResult Decrypt()
         {
             var model = new EncrytpionRSA();
 
-            var encryptedPath = Path.Combine(storagePath, "encrypted.txt");
-            var privateKeyPath = Path.Combine(storagePath, "private.key");
+            var username = HttpContext.Session.GetString("user") ?? "anonymous";
+            var userFolder = Path.Combine(storagePath, username);
+
+            var encryptedPath = Path.Combine(userFolder, "encrypted.txt");
+            var privateKeyPath = Path.Combine(userFolder, "private.key");
 
             if (System.IO.File.Exists(encryptedPath) && System.IO.File.Exists(privateKeyPath))
             {
@@ -59,10 +68,11 @@ namespace DataSecurityRSAV2.Controllers
             }
             else
             {
-                ViewBag.Message = "No encrypted data or key found.";
+                ViewBag.Message = "No encrypted data or key found for this user.";
             }
 
-            return View("Decryption",model);
+            return View("Decryption", model);
         }
+
     }
 }
